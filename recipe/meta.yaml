@@ -11,23 +11,25 @@ source:
 
 build:
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 1
   noarch: python
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}
     - pip
     - poetry-core
     - poetry-dynamic-versioning
 
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     - matplotlib-base >=3.5.0
     - pyresample >=1.16.0,<1.17
 
     
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - felyxcontribs_metrics_workflow
 
